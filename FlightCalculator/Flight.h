@@ -8,28 +8,21 @@
 
 class Flight
 {
-public:
-	enum class PerformanceIndex
-	{
-		Invalid,
-		Minimum,
-		Average,
-		Maximum
-	};
-
 private:
-	const Plane* _plane = nullptr;
-	PerformanceIndex _performanceIndex = PerformanceIndex::Invalid;
+	const Plane* _plane = nullptr;	// if we have such pointer then maybe "move" ctor/assignment should be provided? or maybe use value here?
+	Plane::PerformanceIndex _performanceIndex = Plane::PerformanceIndex::Invalid;
 	std::vector<RoutePoint> _route;	
 
 public:
-	Flight(const Plane *plane, PerformanceIndex index, std::vector<RoutePoint> route) :
+	Flight(const Plane *plane, Plane::PerformanceIndex index, std::vector<RoutePoint> route) :
 		_plane { plane },
 		_performanceIndex{ index },
 		_route { route }
 	{
 		
 	}
+
+	// add friend class "FlightCalculator" or provide getters?
 };
 
 #endif // FLIGHT_H

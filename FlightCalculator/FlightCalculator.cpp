@@ -68,7 +68,7 @@ int main()
 
 	TestingDataAccessor dataAccessor;
 	TestingRouteGenerator routeGenerator;
-	Flight flight{ dataAccessor.GetPlane("A"), Flight::PerformanceIndex::Average, routeGenerator.GetRoute("AA", "BB") };
+	Flight flight{ dataAccessor.GetPlane("A"), Plane::PerformanceIndex::Average, routeGenerator.GetRoute("AA", "BB") };
 
 
 	std::unique_ptr<FlightCalculator> flCalc = std::make_unique<FlightCalculator>();
