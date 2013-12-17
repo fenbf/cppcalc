@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlightCalculator_step1", "FlightCalculator\FlightCalculator.vcxproj", "{2A64D295-9992-4270-9769-99B549DDE25A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlightCalculator_step2", "FlightCalculator_step2\FlightCalculator_step2.vcxproj", "{3E0E00C5-F459-4EBF-8ED9-A9E3AF1AAF45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A64D295-9992-4270-9769-99B549DDE25A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2A64D295-9992-4270-9769-99B549DDE25A}.Debug|Win32.Build.0 = Debug|Win32
+		{2A64D295-9992-4270-9769-99B549DDE25A}.Release|Win32.ActiveCfg = Release|Win32
+		{2A64D295-9992-4270-9769-99B549DDE25A}.Release|Win32.Build.0 = Release|Win32
+		{3E0E00C5-F459-4EBF-8ED9-A9E3AF1AAF45}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3E0E00C5-F459-4EBF-8ED9-A9E3AF1AAF45}.Debug|Win32.Build.0 = Debug|Win32
+		{3E0E00C5-F459-4EBF-8ED9-A9E3AF1AAF45}.Release|Win32.ActiveCfg = Release|Win32
+		{3E0E00C5-F459-4EBF-8ED9-A9E3AF1AAF45}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
