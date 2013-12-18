@@ -5,9 +5,10 @@
 
 std::vector<RoutePoint> TestingRouteGenerator::GetRoute(std::string startWaypointName, std::string endWaypointName)
 {
+	// if (startWaypointName == "EPGD" && endWaypointName == "LEMD")
 	return 
 	{
-		{ "EPGDR29", "EPGD ", 0, RoutePoint::Type::Climbing },
+		{ "EPGDR29", "EPGD", 0, RoutePoint::Type::Climbing },
 		{ "DEXIR3G", "DEXIR", 50, RoutePoint::Type::Climbing },
 		{ "T671", "VEKON", 100, RoutePoint::Type::Cruise },
 		{ "L730", "LUXAL", 150, RoutePoint::Type::Cruise },

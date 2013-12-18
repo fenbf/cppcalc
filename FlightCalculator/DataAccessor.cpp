@@ -6,13 +6,14 @@
 
 const std::map<std::string, Plane> MapOfPlanes = {
 	{ "A", { "A", { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } } },
-	{ "A", { "A", { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } } }
+	{ "B", { "B", { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } } }
 };
 
 // when changing to unordered_map we need to provide hash function...
 //                     awy,    name,     lat,     lon,  dystans
-const std::map<std::string, Waypoint> MapOfWaypoints = {
-	{ "DEXIR", { "DEXIR3G", "DEXIR", 0.0, 0.0, 0.0 } },
+const static std::map<std::string, Waypoint> MapOfWaypoints = {
+	{ "EPGD", { "EPGDR29", "EPGD", 54.0981, 17.0181, 0.0 } },
+	{ "DEXIR", { "DEXIR3G", "DEXIR", 54.0982, 17.0182, 0.5 } },
 	{ "VEKON", { "T671"   , "VEKON", 54.0983, 17.0183, 1.0 } },
 	{ "LUXAL", { "L730"   , "LUXAL", 53.9150, 16.5433, 1.2 } },
 	{ "XERBI", { "P31"    , "XERBI", 53.0317, 15.6717, 1.4 } },
@@ -58,7 +59,14 @@ const Plane* TestingDataAccessor::GetPlane(std::string nameOfPlane)
 	return &MapOfPlanes.at(nameOfPlane);
 }
 
+static const std::map<std::string, int> test = { { "a", 1 }, { "b", 2 } };
+
 const Waypoint* TestingDataAccessor::GetWaypoint(std::string nameOfWaypoint)
 {
-	return &MapOfWaypoints.at(nameOfWaypoint);
+	std::map<std::string, Waypoint> MapOfWaypoints44;
+	MapOfWaypoints44["EPGD"] = { "EPGDR29", "EPGD", 54.0981, 17.0181, 0.0 };
+	MapOfWaypoints44["LEMD"] = { "EPGDR29", "LEMD", 54.0981, 17.0181, 0.0 };
+
+	auto it = MapOfWaypoints44.find(nameOfWaypoint);
+	return it != MapOfWaypoints44.end() ? &(it->second) : nullptr;
 }

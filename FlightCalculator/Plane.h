@@ -43,26 +43,11 @@ public:
 
 	}
 
-	PerformanceParams GetParams(PerformanceIndex index, RoutePoint::Type pointType)
-	{
-		if (pointType == RoutePoint::Type::Climbing)
-			return _onClimbing;
-		else if (pointType == RoutePoint::Type::Descent)
-			return _onDescent;
-		else
-		{
-			switch (index)
-			{
-			case PerformanceIndex::Minimum:
-				return _minimum;
-			case PerformanceIndex::Average:
-				return _average;
-			case PerformanceIndex::Maximum:
-				return _maximum;
-			}
-		}
-		return { 0.0, 0.0 };
-	}
+	PerformanceParams GetPerfParamsMinimum() const { return _minimum; }
+	PerformanceParams GetPerfParamsAverage() const { return _average; }
+	PerformanceParams GetPerfParamsMaximum() const { return _maximum; }
+	PerformanceParams GetPerfParamsOnClimbing() const { return _onClimbing; }
+	PerformanceParams GetPerfParamsOnDescent() const { return _onDescent; }
 };
 
 #endif // PLANE_H

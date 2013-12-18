@@ -21,21 +21,26 @@
 
 std::mutex data_mutex;
 
-CalculatedFlightData FlightCalculator::Calculate(Flight flight)
+CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *dataAccessor)
 {
 	//std::shared_ptr<CalculatedFlightData> calcData = std::make_shared<CalculatedFlightData>();
 	CalculatedFlightData calcData;
 
-
-	//for (auto &v : vec)
-	//{
-	//	std::cout << v << std::endl;
-	//}
-
+	double dist = 0.0;
+	for (const auto& pt : flight.GetPoints())
 	{
-		std::lock_guard<std::mutex> lock(data_mutex);
-		// access to data
+		std::cout << pt._waypointName << std::endl;
+		auto p = dataAccessor->GetWaypoint(pt._waypointName);
+		if (p == nullptr)
+			break;
+		dist += p->_distance;
 	}
+	std::cout << "total dist: " << dist << std::endl;
+
+	//{
+	//	std::lock_guard<std::mutex> lock(data_mutex);
+	//	// access to data
+	//}
 
 
 	return calcData;
@@ -54,17 +59,17 @@ int main()
 {
 	std::cout << "\n\n Hello in Flight Calculator" << std::endl;
 
-	const std::string dateRegExpr("[0-9]{4}-[0-9]{2}-[0-9]{2}");
-	std::string dateOfFlight;
-	std::cout << "\n\n Please enter the date of flight, ex. 2014-01-20 => Departure date: ";
-	std::getline(std::cin, dateOfFlight);
-	matcher(dateOfFlight, dateRegExpr);
+	//const std::string dateRegExpr("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+	//std::string dateOfFlight;
+	//std::cout << "\n\n Please enter the date of flight, ex. 2014-01-20 => Departure date: ";
+	//std::getline(std::cin, dateOfFlight);
+	//matcher(dateOfFlight, dateRegExpr);
 
-	const std::string timeRegExpr("[0-9]{2}:[0-9]{2}Z?");
-	std::string timeOfFlight;
-	std::cout << "\n\n Please enter the time of flight, ex. 10:15 => Departure time: ";
-	std::getline(std::cin, timeOfFlight);
-	matcher(timeOfFlight, timeRegExpr);
+	//const std::string timeRegExpr("[0-9]{2}:[0-9]{2}Z?");
+	//std::string timeOfFlight;
+	//std::cout << "\n\n Please enter the time of flight, ex. 10:15 => Departure time: ";
+	//std::getline(std::cin, timeOfFlight);
+	//matcher(timeOfFlight, timeRegExpr);
 
 	TestingDataAccessor dataAccessor;
 	TestingRouteGenerator routeGenerator;
@@ -73,16 +78,16 @@ int main()
 
 	std::unique_ptr<FlightCalculator> flCalc = std::make_unique<FlightCalculator>();
 
-	std::thread prepareData([]{ std::cout << " ... add/minus something ... :)"; });
-	prepareData.join();
+	//std::thread prepareData([]{ std::cout << " ... add/minus something ... :)"; });
+	//prepareData.join();
 
 
 	//std::thread route1(flCalc->Calculate, flight);
 	
 
-	CalculatedFlightData calcData;
+	/*CalculatedFlightData calcData;
 	std::thread route1([&] {calcData = flCalc->Calculate(flight); });
-	route1.join();
+	route1.join();*/
 
 
 	//std::future<CalculatedFlightData> ret = std::async(flCalc->Calculate(flight));
@@ -92,7 +97,7 @@ int main()
 
 	//route1.join();
 
-	auto calcData1 = flCalc->Calculate(flight);
+	auto calcData1 = flCalc->Calculate(flight, &dataAccessor);
 
 
 	std::getchar();

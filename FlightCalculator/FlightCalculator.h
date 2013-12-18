@@ -17,13 +17,13 @@ private:
 class FlightCalculatorBase
 {
 public:
-	virtual CalculatedFlightData Calculate(Flight flight) = 0;
+	virtual CalculatedFlightData Calculate(Flight flight, class IDataAccessor *dataAccessor) = 0;
 };
 
 class FlightCalculator : FlightCalculatorBase
 {
 public:
-	virtual CalculatedFlightData Calculate(Flight flight) override;
+	virtual CalculatedFlightData Calculate(Flight flight, class IDataAccessor *dataAccessor) override;
 };
 
 #endif // FLIGHT_CALCULATOR_H
