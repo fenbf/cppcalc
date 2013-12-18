@@ -33,13 +33,18 @@ CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *d
 		totalDistance += p->_distance;
 	}
 
+	auto perfParams = flight.GetPerformanceParams(Plane::PerformanceIndex::Average, RoutePoint::Type::Cruise);
+	double speed = perfParams._velocityKmPerHour;
+	double totalTime = totalDistance / speed;
+	double totalFuel = totalTime * perfParams._fuelKgPerHour;
+
 	//{
 	//	std::lock_guard<std::mutex> lock(data_mutex);
 	//	// access to data
 	//}
 
 
-	return { totalDistance, 0.0, 0.0 };
+	return { totalDistance, totalTime, totalFuel };
 }
 
 std::ostream& operator <<(std::ostream &stream, const CalculatedFlightData &data)
@@ -77,7 +82,7 @@ int main()
 
 	TestingDataAccessor dataAccessor;
 	TestingRouteGenerator routeGenerator;
-	Flight flight{ dataAccessor.GetPlane("A"), Plane::PerformanceIndex::Average, routeGenerator.GetRoute("EPGD", "LEMD") };
+	Flight flight{ dataAccessor.GetPlane("Airbus 320"), Plane::PerformanceIndex::Average, routeGenerator.GetRoute("EPGD", "LEMD") };
 
 
 	std::unique_ptr<FlightCalculator> flCalc = std::make_unique<FlightCalculator>();

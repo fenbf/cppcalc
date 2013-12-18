@@ -5,8 +5,8 @@
 
 
 const std::map<std::string, Plane> MapOfPlanes = {
-	{ "A", { "A", { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } } },
-	{ "B", { "B", { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 }, { 0.0, 0.0 } } }
+	{ "Airbus 320", { "Airbus 320", { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 0.0 }, { 1.0, 1.0 } } },
+	{ "Beoing 737", { "Beoing 737", { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 } } }
 };
 
 // when changing to unordered_map we need to provide hash function...
@@ -58,8 +58,6 @@ const Plane* TestingDataAccessor::GetPlane(std::string nameOfPlane)
 {
 	return &MapOfPlanes.at(nameOfPlane);
 }
-
-static const std::map<std::string, int> test = { { "a", 1 }, { "b", 2 } };
 
 const Waypoint* TestingDataAccessor::GetWaypoint(std::string nameOfWaypoint)
 {
