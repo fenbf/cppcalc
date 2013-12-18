@@ -5,13 +5,25 @@
 
 class CalculatedFlightData
 {
-public:
-	CalculatedFlightData(){};
-
 private:
-	double totalDistance;
-	double totalTime; // w godzinach
-	double totalFuel;
+	double _totalDistance;
+	double _totalTime;
+	double _totalFuel;
+
+public:
+	CalculatedFlightData(double totalDist, double totalTime, double totalFuel) :
+		_totalDistance(totalDist),
+		_totalTime(totalTime),
+		_totalFuel(totalFuel)
+	{
+
+	};
+
+	double GetTotalDistance() const { return _totalDistance; }
+	double GetTotalTime() const { return _totalTime; }
+	double GetTotalFuel() const { return _totalFuel; }
+
+	friend std::ostream &operator <<(std::ostream &stream, const CalculatedFlightData &data);
 };
 
 class FlightCalculatorBase

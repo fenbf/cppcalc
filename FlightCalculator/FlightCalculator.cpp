@@ -23,19 +23,15 @@ std::mutex data_mutex;
 
 CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *dataAccessor)
 {
-	//std::shared_ptr<CalculatedFlightData> calcData = std::make_shared<CalculatedFlightData>();
-	CalculatedFlightData calcData;
-
-	double dist = 0.0;
+	double totalDistance = 0;
 	for (const auto& pt : flight.GetPoints())
 	{
-		std::cout << pt._waypointName << std::endl;
 		auto p = dataAccessor->GetWaypoint(pt._waypointName);
 		if (p == nullptr)
 			break;
-		dist += p->_distance;
+
+		totalDistance += p->_distance;
 	}
-	std::cout << "total dist: " << dist << std::endl;
 
 	//{
 	//	std::lock_guard<std::mutex> lock(data_mutex);
@@ -43,7 +39,15 @@ CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *d
 	//}
 
 
-	return calcData;
+	return { totalDistance, 0.0, 0.0 };
+}
+
+std::ostream& operator <<(std::ostream &stream, const CalculatedFlightData &data)
+{
+	stream << "Total Distance:\t" << data._totalDistance << " km" << std::endl;
+	stream << "Total Time:\t" << data._totalTime << " hours" << std::endl;
+	stream << "Total Fuel:\t" << data._totalFuel << " kilograms" << std::endl;
+	return stream;
 }
 
 void matcher(std::string &baseTxt, const std::string &regExp)
@@ -73,7 +77,7 @@ int main()
 
 	TestingDataAccessor dataAccessor;
 	TestingRouteGenerator routeGenerator;
-	Flight flight{ dataAccessor.GetPlane("A"), Plane::PerformanceIndex::Average, routeGenerator.GetRoute("AA", "BB") };
+	Flight flight{ dataAccessor.GetPlane("A"), Plane::PerformanceIndex::Average, routeGenerator.GetRoute("EPGD", "LEMD") };
 
 
 	std::unique_ptr<FlightCalculator> flCalc = std::make_unique<FlightCalculator>();
@@ -98,7 +102,7 @@ int main()
 	//route1.join();
 
 	auto calcData1 = flCalc->Calculate(flight, &dataAccessor);
-
+	std::cout << calcData1;
 
 	std::getchar();
 	return 0;

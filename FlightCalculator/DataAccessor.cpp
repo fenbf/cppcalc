@@ -63,10 +63,9 @@ static const std::map<std::string, int> test = { { "a", 1 }, { "b", 2 } };
 
 const Waypoint* TestingDataAccessor::GetWaypoint(std::string nameOfWaypoint)
 {
-	std::map<std::string, Waypoint> MapOfWaypoints44;
-	MapOfWaypoints44["EPGD"] = { "EPGDR29", "EPGD", 54.0981, 17.0181, 0.0 };
-	MapOfWaypoints44["LEMD"] = { "EPGDR29", "LEMD", 54.0981, 17.0181, 0.0 };
+	auto it = MapOfWaypoints.find(nameOfWaypoint);
+	if (it != MapOfWaypoints.end())
+		return &(it->second);
 
-	auto it = MapOfWaypoints44.find(nameOfWaypoint);
-	return it != MapOfWaypoints44.end() ? &(it->second) : nullptr;
+	return nullptr;
 }
