@@ -23,6 +23,8 @@ std::mutex data_mutex;
 
 CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *dataAccessor)
 {
+	// initially the code will do nothing...
+
 	double totalDistance = 0;
 	for (const auto& pt : flight.GetPoints())
 	{
@@ -33,7 +35,7 @@ CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *d
 		totalDistance += p->_distance;
 	}
 
-	auto perfParams = flight.GetPerformanceParams(Plane::PerformanceIndex::Average, RoutePoint::Type::Cruise);
+	auto perfParams = flight.GetPerformanceParams(RoutePoint::Type::Cruise);
 	double speed = perfParams._velocityKmPerHour;
 	double totalTime = totalDistance / speed;
 	double totalFuel = totalTime * perfParams._fuelKgPerHour;
@@ -45,6 +47,44 @@ CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *d
 
 
 	return { totalDistance, totalTime, totalFuel };
+}
+
+CalculatedFlightData FlightCalculator2::Calculate(Flight flight, IDataAccessor *dataAccessor)
+{
+	double totalDistance = 0;
+	double totalTime = 0.0;
+	double totalFuel = 0.0;
+	for (const auto& pt : flight.GetPoints())
+	{
+		auto p = dataAccessor->GetWaypoint(pt._waypointName);
+		if (p == nullptr)
+			break;
+
+		totalDistance += p->_distance;
+
+		auto perfParams = flight.GetPerformanceParams(pt._pointType);
+
+		double localDist = p->_distance;
+		double speed = perfParams._velocityKmPerHour;
+		double localTime = localDist / speed;
+		double localFuel = localTime * perfParams._fuelKgPerHour;
+
+		totalTime += localTime;
+		totalFuel += localFuel;
+	}
+	
+	
+
+	//{
+	//	std::lock_guard<std::mutex> lock(data_mutex);
+	//	// access to data
+	//}
+
+
+	// step 3
+	{directrion (-/+1), factor (0...1), dataAccessor->GetWindoComponent(waypointName);
+
+	return{ totalDistance, totalTime, totalFuel };
 }
 
 std::ostream& operator <<(std::ostream &stream, const CalculatedFlightData &data)
@@ -85,7 +125,15 @@ int main()
 	Flight flight{ dataAccessor.GetPlane("Airbus 320"), Plane::PerformanceIndex::Average, routeGenerator.GetRoute("EPGD", "LEMD") };
 
 
-	std::unique_ptr<FlightCalculator> flCalc = std::make_unique<FlightCalculator>();
+	auto flCalc = std::make_unique<FlightCalculator>();
+	auto calcData1 = flCalc->Calculate(flight, &dataAccessor);
+	std::cout << calcData1;
+
+	std::cout << "--" << std::endl;
+
+	auto flCalc2 = std::make_unique<FlightCalculator2>();
+	auto calcData2 = flCalc2->Calculate(flight, &dataAccessor);
+	std::cout << calcData2;
 
 	//std::thread prepareData([]{ std::cout << " ... add/minus something ... :)"; });
 	//prepareData.join();
@@ -106,8 +154,7 @@ int main()
 
 	//route1.join();
 
-	auto calcData1 = flCalc->Calculate(flight, &dataAccessor);
-	std::cout << calcData1;
+	
 
 	std::getchar();
 	return 0;

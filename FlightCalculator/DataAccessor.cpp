@@ -4,8 +4,10 @@
 #include <map>
 
 
+// note: student will have to add entries...
 const std::map<std::string, Plane> MapOfPlanes = {
-	{ "Airbus 320", { "Airbus 320", { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 0.0 }, { 1.0, 1.0 } } },
+	// name,          name,          min (fuel, speed)  avg           max           clb           desc
+	{ "Airbus 320", { "Airbus 320", { 1.0, 1.0 }, { 1.5, 1.5 }, { 2.0, 2.0 }, { 2.5, 0.9 }, { 0.9, 0.5 } } },
 	{ "Beoing 737", { "Beoing 737", { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 } } }
 };
 

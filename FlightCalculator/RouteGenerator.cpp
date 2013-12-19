@@ -9,6 +9,7 @@ std::vector<RoutePoint> TestingRouteGenerator::GetRoute(std::string startWaypoin
 	{
 		return
 		{
+			// note: in step 2 change first two fields from Criuse to Climbing, and last for descent
 			{ "EPGDR29", "EPGD", 0, RoutePoint::Type::Climbing },
 			{ "DEXIR3G", "DEXIR", 50, RoutePoint::Type::Climbing },
 			{ "T671", "VEKON", 100, RoutePoint::Type::Cruise },

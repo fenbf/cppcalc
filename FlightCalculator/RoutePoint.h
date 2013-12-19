@@ -6,7 +6,7 @@
 class RoutePoint
 {
 public:
-	enum class Type
+	enum class Type	// note: initially enum will be in "old" style
 	{
 		None = 0,
 		Climbing,

@@ -22,7 +22,7 @@ public:
 		
 	}
 
-	Plane::PerformanceParams GetPerformanceParams(Plane::PerformanceIndex index, RoutePoint::Type pointType)
+	Plane::PerformanceParams GetPerformanceParams(RoutePoint::Type pointType)
 	{
 		// note: students will have to implement this method
 		//       as a start this method will return only "average params"
@@ -32,7 +32,7 @@ public:
 			return _plane->GetPerfParamsOnDescent();
 		else
 		{
-			switch (index)
+			switch (_performanceIndex)
 			{
 			case Plane::PerformanceIndex::Minimum:
 				return _plane->GetPerfParamsMinimum();

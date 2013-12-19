@@ -38,4 +38,10 @@ public:
 	virtual CalculatedFlightData Calculate(Flight flight, class IDataAccessor *dataAccessor) override;
 };
 
+class FlightCalculator2 : FlightCalculatorBase
+{
+public:
+	virtual CalculatedFlightData Calculate(Flight flight, class IDataAccessor *dataAccessor) override;
+};
+
 #endif // FLIGHT_CALCULATOR_H
