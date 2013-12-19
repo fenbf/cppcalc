@@ -84,10 +84,12 @@
     <ClInclude Include="RouteGenerator.h" />
     <ClInclude Include="RoutePoint.h" />
     <ClInclude Include="Waypoint.h" />
+    <ClInclude Include="Weather.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataAccessor.cpp" />
     <ClCompile Include="FlightCalculator.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="RouteGenerator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -9,12 +9,12 @@
 class Flight
 {
 private:
-	const Plane* _plane = nullptr;	// if we have such pointer then maybe "move" ctor/assignment should be provided? or maybe use value here?
+	const Plane* const _plane = nullptr;	// if we have such pointer then maybe "move" ctor/assignment should be provided? or maybe use value here?
 	Plane::PerformanceIndex _performanceIndex = Plane::PerformanceIndex::Invalid;
-	std::vector<RoutePoint> _route;	
+	const std::vector<RoutePoint> * const _route = nullptr;	
 
 public:
-	Flight(const Plane *plane, Plane::PerformanceIndex index, std::vector<RoutePoint> route) :
+	Flight(const Plane *plane, Plane::PerformanceIndex index, const std::vector<RoutePoint> *route) :
 		_plane { plane },
 		_performanceIndex{ index },
 		_route { route }
@@ -45,7 +45,7 @@ public:
 		return{ 0.0, 0.0 };
 	}
 
-	const std::vector<RoutePoint> &GetPoints() const { return _route;  }
+	const std::vector<RoutePoint> *GetPoints() const { return _route;  }
 
 	// add friend class "FlightCalculator" or provide getters?
 };

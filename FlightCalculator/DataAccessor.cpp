@@ -69,3 +69,14 @@ const Waypoint* TestingDataAccessor::GetWaypoint(std::string nameOfWaypoint)
 
 	return nullptr;
 }
+
+
+
+WindComponent TestingDataAccessor::GetWindComponentForWaypoint(const Waypoint &waypoint)
+{
+	// note: student will have to implement the whole method...
+	if (waypoint._lon < 0.0)
+		return{ 1.0, 0.1 };
+	
+	return{ -1.0, 0.1 };
+}
