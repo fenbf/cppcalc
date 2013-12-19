@@ -29,19 +29,22 @@ public:
 class FlightCalculatorBase
 {
 public:
-	virtual CalculatedFlightData Calculate(Flight flight, class IDataAccessor *dataAccessor) = 0;
+	virtual ~FlightCalculatorBase() { }
+	virtual CalculatedFlightData Calculate(const Flight &flight, class IDataAccessor *dataAccessor) = 0;
 };
 
-class FlightCalculator : FlightCalculatorBase
+class FlightCalculator : public FlightCalculatorBase
 {
 public:
-	virtual CalculatedFlightData Calculate(Flight flight, class IDataAccessor *dataAccessor) override;
+	virtual CalculatedFlightData Calculate(const Flight &flight, class IDataAccessor *dataAccessor) override;
 };
 
-class FlightCalculator2 : FlightCalculatorBase
+class FlightCalculator2 : public FlightCalculatorBase
 {
 public:
-	virtual CalculatedFlightData Calculate(Flight flight, class IDataAccessor *dataAccessor) override;
+	virtual CalculatedFlightData Calculate(const Flight &flight, class IDataAccessor *dataAccessor) override;
 };
+
+
 
 #endif // FLIGHT_CALCULATOR_H

@@ -21,7 +21,7 @@
 
 std::mutex data_mutex;
 
-CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *dataAccessor)
+CalculatedFlightData FlightCalculator::Calculate(const Flight &flight, IDataAccessor *dataAccessor)
 {
 	// initially the code will do nothing...
 
@@ -49,7 +49,7 @@ CalculatedFlightData FlightCalculator::Calculate(Flight flight, IDataAccessor *d
 	return { totalDistance, totalTime, totalFuel };
 }
 
-CalculatedFlightData FlightCalculator2::Calculate(Flight flight, IDataAccessor *dataAccessor)
+CalculatedFlightData FlightCalculator2::Calculate(const Flight &flight, IDataAccessor *dataAccessor)
 {
 	double totalDistance = 0;
 	double totalTime = 0.0;
@@ -82,7 +82,7 @@ CalculatedFlightData FlightCalculator2::Calculate(Flight flight, IDataAccessor *
 
 
 	// step 3
-	{directrion (-/+1), factor (0...1), dataAccessor->GetWindoComponent(waypointName);
+	// {directrion (-/+1), factor (0...1), dataAccessor->GetWindoComponent(waypointName);
 
 	return{ totalDistance, totalTime, totalFuel };
 }
@@ -125,13 +125,13 @@ int main()
 	Flight flight{ dataAccessor.GetPlane("Airbus 320"), Plane::PerformanceIndex::Average, routeGenerator.GetRoute("EPGD", "LEMD") };
 
 
-	auto flCalc = std::make_unique<FlightCalculator>();
+	std::unique_ptr<FlightCalculatorBase> flCalc(new FlightCalculator);
 	auto calcData1 = flCalc->Calculate(flight, &dataAccessor);
 	std::cout << calcData1;
 
 	std::cout << "--" << std::endl;
 
-	auto flCalc2 = std::make_unique<FlightCalculator2>();
+	std::unique_ptr<FlightCalculatorBase> flCalc2(new FlightCalculator2);
 	auto calcData2 = flCalc2->Calculate(flight, &dataAccessor);
 	std::cout << calcData2;
 

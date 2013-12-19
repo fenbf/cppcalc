@@ -22,7 +22,7 @@ public:
 		
 	}
 
-	Plane::PerformanceParams GetPerformanceParams(RoutePoint::Type pointType)
+	Plane::PerformanceParams GetPerformanceParams(RoutePoint::Type pointType) const
 	{
 		// note: students will have to implement this method
 		//       as a start this method will return only "average params"
@@ -45,7 +45,7 @@ public:
 		return{ 0.0, 0.0 };
 	}
 
-	const std::vector<RoutePoint> &GetPoints() { return _route;  }
+	const std::vector<RoutePoint> &GetPoints() const { return _route;  }
 
 	// add friend class "FlightCalculator" or provide getters?
 };
