@@ -70,7 +70,7 @@ const Waypoint* TestingDataAccessor::GetWaypoint(std::string nameOfWaypoint)
 	return nullptr;
 }
 
-
+// note: unordered_map for <airway_name, windcomponent>
 
 WindComponent TestingDataAccessor::GetWindComponentForWaypoint(const Waypoint &waypoint)
 {

@@ -71,6 +71,7 @@ public:
 
 	void RunAll(class IDataAccessor *dataAccessor)
 	{
+		// todo: add threads here, statistics - ie: get minimum fuel...
 		for(auto &element : _collection)
 		{
 			_results.emplace_back(element.second->Calculate(*element.first, dataAccessor));
