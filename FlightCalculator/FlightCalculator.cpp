@@ -89,7 +89,7 @@ CalculatedFlightData FlightCalculator3::Calculate(const Flight &flight, IDataAcc
 		totalTime += localTime;
 		totalFuel += localFuel;
 	}
-
+	///
 
 
 	//{
