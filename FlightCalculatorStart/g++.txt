@@ -1,0 +1,5 @@
+to build:
+
+g++ main.cpp DataAccessor.cpp FlightCalculator.cpp RouteGenerator.cpp -std=c++11 -O2 -o FlightCalculator.exe
+
+or use "make" with "makefile"

@@ -9,9 +9,9 @@
 class Flight
 {
 private:
-	const Plane* const _plane = nullptr;
-	Plane::PerformanceIndex _performanceIndex = Plane::PerformanceIndex::Invalid;
-	const std::vector<RoutePoint> * const _route = nullptr;	
+	const Plane* const _plane;
+	Plane::PerformanceIndex _performanceIndex;
+	const std::vector<RoutePoint> * const _route;	
 
 public:
 	Flight(const Plane *plane, Plane::PerformanceIndex index, const std::vector<RoutePoint> *route) :

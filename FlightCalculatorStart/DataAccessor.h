@@ -20,9 +20,9 @@ public:
 class TestingDataAccessor : public IDataAccessor
 {
 public:
-	const Plane* GetPlane(std::string nameOfPlane) override;
-	const Waypoint* GetWaypoint(std::string nameOfWaypoint) override;
-	WindComponent GetWindComponentForWaypoint(const Waypoint &) override;
+	const Plane* GetPlane(std::string nameOfPlane);
+	const Waypoint* GetWaypoint(std::string nameOfWaypoint);
+	WindComponent GetWindComponentForWaypoint(const Waypoint &);
 };
 
 #endif // DATA_ACCESSOR_H

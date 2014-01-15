@@ -4,17 +4,15 @@
 #include <map>
 
 
-// note: student will have to add entries...
 const std::map<std::string, Plane> MapOfPlanes = {
 	// name,          name,          min (fuel, speed)  avg           max           clb           desc
-	{ "Airbus 320", { "Airbus 320", { 1.0, 1.0 }, { 1.5, 1.5 }, { 2.0, 2.0 }, { 2.5, 0.9 }, { 0.9, 0.5 } } },
+	{ "Airbus 330", { "Airbus 330", { 1.0, 1.0 }, { 1.5, 1.5 }, { 2.0, 2.0 }, { 2.5, 0.9 }, { 0.9, 0.5 } } },
 	{ "Beoing 737", { "Beoing 737", { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 }, { 1.0, 1.0 } } }
 };
 
-// when changing to unordered_map we need to provide hash function...
-//                     awy,    name,     lat,     lon,  dystans
+//                awy,    name,     lat,     lon,  dist
 const static std::map<std::string, Waypoint> MapOfWaypoints = {
-	{ "EPGD", { "EPGDR29", "EPGD", 54.0981, 17.0181, 0.0 } },
+	{ "EPGD",  { "EPGDR29", "EPGD", 54.0981, 17.0181, 0.0 } },
 	{ "DEXIR", { "DEXIR3G", "DEXIR", 54.0982, 17.0182, 0.5 } },
 	{ "VEKON", { "T671"   , "VEKON", 54.0983, 17.0183, 1.0 } },
 	{ "LUXAL", { "L730"   , "LUXAL", 53.9150, 16.5433, 1.2 } },
@@ -64,11 +62,8 @@ const Plane* TestingDataAccessor::GetPlane(std::string nameOfPlane)
 const Waypoint* TestingDataAccessor::GetWaypoint(std::string nameOfWaypoint)
 {
 	// todo: implement
-
 	return nullptr;
 }
-
-// note: unordered_map for <airway_name, windcomponent>
 
 WindComponent TestingDataAccessor::GetWindComponentForWaypoint(const Waypoint &waypoint)
 {

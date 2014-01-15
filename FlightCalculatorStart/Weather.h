@@ -10,6 +10,7 @@ public:
 public:
 	WindComponent(double df, double sf) : _directionFactor(df), _speedFactor(sf)
 	{
+
 	}
 
 };
