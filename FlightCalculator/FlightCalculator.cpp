@@ -90,17 +90,6 @@ CalculatedFlightData FlightCalculator3::Calculate(const Flight &flight, IDataAcc
 		totalFuel += localFuel;
 	}
 
-
-
-	//{
-	//	std::lock_guard<std::mutex> lock(data_mutex);
-	//	// access to data
-	//}
-
-
-	// step 3
-	// {directrion (-/+1), factor (0...1), dataAccessor->GetWindoComponent(waypointName);
-
 	return{ totalDistance, totalTime, totalFuel };
 }
 
@@ -109,5 +98,6 @@ std::ostream& operator <<(std::ostream &stream, const CalculatedFlightData &data
 	stream << "Total Distance:\t" << data._totalDistance << " km" << std::endl;
 	stream << "Total Time:\t" << data._totalTime << " hours" << std::endl;
 	stream << "Total Fuel:\t" << data._totalFuel << " kilograms" << std::endl;
+	// todo: add departure and arrival time points
 	return stream;
 }

@@ -3,15 +3,20 @@
 
 #include "Flight.h"
 #include <tuple>
+#include <vector>
+#include <future>
+#include <thread>
+#include <chrono>
 
 class CalculatedFlightData
 {
 private:
-	double _totalDistance;
-	double _totalTime;
-	double _totalFuel;
+	double _totalDistance{ 0 };
+	double _totalTime{ 0 };
+	double _totalFuel{ 0 };
 
 public:
+	CalculatedFlightData() { }
 	CalculatedFlightData(double totalDist, double totalTime, double totalFuel) :
 		_totalDistance(totalDist),
 		_totalTime(totalTime),
@@ -80,6 +85,25 @@ public:
 		for (auto &element : _results)
 		{
 			std::cout << "\n--\n" << element;
+		}
+	}
+
+	void RunAllThreads(class IDataAccessor *dataAccessor)
+	{
+		std::vector<std::future<CalculatedFlightData>> futures;
+		for (int i = 0; i < _collection.size(); ++i)
+		{
+			futures.emplace_back(std::async([this, i, dataAccessor](){
+				std::this_thread::sleep_for(std::chrono::milliseconds(200));
+				std::cout << "running..." << i << std::endl;
+				return _collection[i].second->Calculate(*_collection[i].first, dataAccessor);
+			}));
+		}
+
+		for (auto &element : futures)
+		{
+			_results.emplace_back(element.get());
+			std::cout << "\n--\n" << _results.back();
 		}
 	}
 };

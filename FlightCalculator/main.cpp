@@ -61,7 +61,7 @@ int main()
 	//std::cout << calcData3;
 
 	CalculatorCollection collection{ { &flight, flCalc.get() }, { &flight, flCalc2.get() }, { &flight, flCalc2.get() } };
-	collection.RunAll(&dataAccessor);
+	collection.RunAllThreads(&dataAccessor);
 
 	std::getchar();
 
