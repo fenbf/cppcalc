@@ -58,7 +58,11 @@ const static std::map<std::string, Waypoint> MapOfWaypoints = {
 
 const Plane* TestingDataAccessor::GetPlane(std::string nameOfPlane)
 {
-	return &MapOfPlanes.at(nameOfPlane);
+	auto it = MapOfPlanes.find(nameOfPlane);
+	if (it != MapOfPlanes.end())
+		return &(it->second);
+
+	return nullptr;
 }
 
 const Waypoint* TestingDataAccessor::GetWaypoint(std::string nameOfWaypoint)

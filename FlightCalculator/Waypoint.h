@@ -20,7 +20,7 @@ public:
 		_name(name),
 		_lat(lat),
 		_lon(lon),
-		_distance(dist*dist*1.852) // NM to KM
+		_distance(dist*1.852) // NM to KM
 	{
 
 	}

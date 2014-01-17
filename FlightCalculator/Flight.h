@@ -24,8 +24,7 @@ public:
 
 	Plane::PerformanceParams GetPerformanceParams(RoutePoint::Type pointType) const
 	{
-		// note: students will have to implement this method
-		//       as a start this method will return only "average params"
+		// task: implement this method
 		if (pointType == RoutePoint::Type::Climbing)
 			return _plane->GetPerfParamsOnClimbing();
 		else if (pointType == RoutePoint::Type::Descent)
@@ -45,9 +44,7 @@ public:
 		return{ 0.0, 0.0 };
 	}
 
-	const std::vector<RoutePoint> *GetPoints() const { return _route;  }
-
-	// add friend class "FlightCalculator" or provide getters?
+	const std::vector<RoutePoint> &GetPoints() const { return *_route;  }
 };
 
 #endif // FLIGHT_H

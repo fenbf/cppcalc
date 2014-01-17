@@ -91,7 +91,7 @@ public:
 	void RunAllThreads(class IDataAccessor *dataAccessor)
 	{
 		std::vector<std::future<CalculatedFlightData>> futures;
-		for (int i = 0; i < _collection.size(); ++i)
+		for (unsigned int i = 0; i < _collection.size(); ++i)
 		{
 			futures.emplace_back(std::async([this, i, dataAccessor](){
 				std::this_thread::sleep_for(std::chrono::milliseconds(200));

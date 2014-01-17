@@ -18,7 +18,7 @@ CalculatedFlightData FlightCalculator::Calculate(const Flight &flight, IDataAcce
 
 	double totalDistance = 0;
 
-	for (const auto& pt : *flight.GetPoints())
+	for (const auto& pt : flight.GetPoints())
 	{
 		auto p = dataAccessor->GetWaypoint(pt._waypointName);
 		if (p == nullptr)
@@ -41,7 +41,7 @@ CalculatedFlightData FlightCalculator2::Calculate(const Flight &flight, IDataAcc
 	double totalTime = 0.0;
 	double totalFuel = 0.0;
 
-	for (const auto& pt : *flight.GetPoints())
+	for (const auto& pt : flight.GetPoints())
 	{
 		auto waypoint = dataAccessor->GetWaypoint(pt._waypointName);
 		if (waypoint == nullptr)
@@ -69,7 +69,7 @@ CalculatedFlightData FlightCalculator3::Calculate(const Flight &flight, IDataAcc
 	double totalTime = 0.0;
 	double totalFuel = 0.0;
 
-	for (const auto& pt : *flight.GetPoints())
+	for (const auto& pt : flight.GetPoints())
 	{
 		auto waypoint = dataAccessor->GetWaypoint(pt._waypointName);
 		if (waypoint == nullptr)

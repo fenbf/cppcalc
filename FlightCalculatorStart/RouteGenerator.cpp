@@ -10,7 +10,7 @@ std::vector<RoutePoint> TestingRouteGenerator::GetRoute(std::string startWaypoin
 		return
 		{
 			{ "EPGDR29", "EPGD", 0, RoutePoint::Type::Cruise },
-			{ "DEXIR3G", "DEXIR", 50, RoutePoint::Type::Cruise },
+			{ "DEXIR3G", "DEXIR", 50, RoutePoint::Type::Cruise }, 
 			{ "T671", "VEKON", 100, RoutePoint::Type::Cruise },
 			{ "L730", "LUXAL", 150, RoutePoint::Type::Cruise },
 			{ "P31", "XERBI", 317, RoutePoint::Type::Cruise },
@@ -37,7 +37,7 @@ std::vector<RoutePoint> TestingRouteGenerator::GetRoute(std::string startWaypoin
 			{ "UZ245", "SEDIL", 233, RoutePoint::Type::Cruise },
 			{ "UZ245", "KONKE", 333, RoutePoint::Type::Cruise },
 			{ "UZ245", "TERSA", 250, RoutePoint::Type::Cruise },
-			{ "TERSA3E", "D043K", 050, RoutePoint::Type::Cruise },
+			{ "TERSA3E", "D043K", 050, RoutePoint::Type::Cruise }, 
 			{ "TERSA3E", "RBO38", 283, RoutePoint::Type::Cruise },
 			{ "TERSA3E", "NOSKO", 567, RoutePoint::Type::Cruise },
 			{ "TERSA3E", "RBO", 533, RoutePoint::Type::Cruise },

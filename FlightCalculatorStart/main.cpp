@@ -20,7 +20,7 @@ void matcher(std::string baseTxt, std::string regExp)
 
 int main()
 {
-	std::cout << "\n\nHello in Flight Calculator\n" << std::endl;
+	std::cout << "Hello in Flight Calculator\n" << std::endl;
 
 	//const std::string timeRegExpr("???????");
 	std::string timeOfFlight = "10:12";
@@ -31,12 +31,12 @@ int main()
 	TestingDataAccessor dataAccessor;
 	TestingRouteGenerator routeGenerator;
 
-	const std::vector<RoutePoint> route = routeGenerator.GetRoute("EPGD", "LEMD");
-	Flight flight(dataAccessor.GetPlane("Airbus 330"), Plane::PerformanceIndex::Average, &route, timeOfFlight);
+	//const std::vector<RoutePoint> route = routeGenerator.GetRoute("EPGD", "LEMD");
+	//Flight flight(dataAccessor.GetPlane("Airbus 330"), Plane::PerformanceIndex::Average, &route, timeOfFlight);
 
-	std::unique_ptr<FlightCalculatorBase> flCalc(new FlightCalculator());
-	CalculatedFlightData calcData = flCalc->Calculate(flight, &dataAccessor);
-	std::cout << flight << calcData << std::endl;
+	//std::unique_ptr<FlightCalculatorBase> flCalc(new FlightCalculator());
+	//CalculatedFlightData calcData = flCalc->Calculate(flight, &dataAccessor);
+	//std::cout << flight << calcData << std::endl;
 
 	std::getchar();
 

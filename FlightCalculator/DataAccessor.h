@@ -15,8 +15,6 @@ public:
 	virtual const Plane* GetPlane(std::string nameOfPlane) = 0;
 	virtual const Waypoint* GetWaypoint(std::string nameOfWaypoint) = 0;
 	virtual WindComponent GetWindComponentForWaypoint(const Waypoint &) = 0;
-
-	//virtual std::vector<RoutePoint> MapOfRoutes
 };
 
 class TestingDataAccessor : public IDataAccessor

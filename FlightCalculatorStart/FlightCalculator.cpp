@@ -14,6 +14,8 @@
 
 CalculatedFlightData FlightCalculator::Calculate(const Flight &flight, IDataAccessor *dataAccessor)
 {
+	// task: implement missing parts... convert to C++11
+	
 	double totalDistance = 0;
 
 	for (std::vector<RoutePoint>::const_iterator it = flight.GetPoints().begin(); it != flight.GetPoints().end(); ++it)
@@ -21,15 +23,8 @@ CalculatedFlightData FlightCalculator::Calculate(const Flight &flight, IDataAcce
 		auto waypoint = dataAccessor->GetWaypoint(it->_waypointName);
 		if (waypoint == nullptr)
 			break;
-		totalDistance += waypoint->_distance;
+		
 	}
-
-	auto perfParams = flight.GetPerformanceParams(RoutePoint::Type::Cruise);
-	double speed = perfParams._velocityKmPerHour;
-	double totalTime = totalDistance / speed;
-	double totalFuel = totalTime * perfParams._fuelKgPerHour;
-
-	//return{ totalDistance, totalTime, totalFuel };
 
 	return{ totalDistance, 0.0, 0.0 };
 }

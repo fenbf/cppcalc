@@ -4,10 +4,11 @@
 #include <map>
 
 
+// task: add "real" perf data
 const std::map<std::string, Plane> MapOfPlanes = {
 	// name,          name,          min (fuel, speed)  avg           max           clb           desc
-	{ "Airbus 330", { "Airbus 330", { 4000, 700 }, { 5000, 833 }, { 6000, 950 }, { 11844, 600 }, { 10099, 685 } } },
-	{ "Beoing 737", { "Beoing 737", { 2000, 650 }, { 2526, 828 }, { 3000, 900 }, { 5830,  780 }, { 5226, 820 } } }
+	{ "Airbus 330", { "Airbus 330", { 1, 1 }, { 1, 1 }, { 1, 1 }, { 1, 1 }, { 1, 1 } } },
+	{ "Beoing 737", { "Beoing 737", { 1, 1 }, { 1, 1 }, { 1, 1 }, { 1, 1 }, { 1, 1 } } }
 };
 
 //                awy,    name,     lat,     lon,  dist (in Nautical Miles)
@@ -56,24 +57,20 @@ const static std::map<std::string, Waypoint> MapOfWaypoints = {
 
 const Plane* TestingDataAccessor::GetPlane(std::string nameOfPlane)
 {
-	auto it = MapOfPlanes.find(nameOfPlane);
-	if (it != MapOfPlanes.end())
-		return &(it->second);
+	// task: implement fetching from the container...
 
 	return nullptr;
 }
 
 const Waypoint* TestingDataAccessor::GetWaypoint(std::string nameOfWaypoint)
 {
-	auto it = MapOfWaypoints.find(nameOfWaypoint);
-	if (it != MapOfWaypoints.end())
-		return &(it->second);
+	// task: implement fetching from the container...
 
 	return nullptr;
 }
 
 WindComponent TestingDataAccessor::GetWindComponentForWaypoint(const Waypoint &waypoint)
 {
-	// todo: implement...
+	// task: implement calculation...
 	return WindComponent(0, 0);
 }

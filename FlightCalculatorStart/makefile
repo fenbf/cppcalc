@@ -1,10 +1,9 @@
 # Project: FlightCalculator
-CPP      = g++.exe
-WINDRES  = windres.exe
+CPP      = g++
 OBJ      = DataAccessor.o FlightCalculator.o main.o RouteGenerator.o
 LINKOBJ  = DataAccessor.o FlightCalculator.o main.o RouteGenerator.o
-BIN      = FlightCalculatorStarter.exe
-CXXFLAGS = -std=c++11
+BIN      = FlightCalculatorStarter
+CXXFLAGS = -std=c++11 -O2
 RM       = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
