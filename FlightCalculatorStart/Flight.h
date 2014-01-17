@@ -2,6 +2,7 @@
 	#define FLIGHT_H
 
 #include <vector>
+#include <string>
 
 #include "Plane.h"
 #include "RoutePoint.h"
@@ -12,12 +13,13 @@ private:
 	const Plane* const _plane;
 	Plane::PerformanceIndex _performanceIndex;
 	const std::vector<RoutePoint> * const _route;	
-
+	const std::string _depTime;
 public:
-	Flight(const Plane *plane, Plane::PerformanceIndex index, const std::vector<RoutePoint> *route) :
+	Flight(const Plane *plane, Plane::PerformanceIndex index, const std::vector<RoutePoint> *route, const std::string &depTime) :
 		_plane(plane),
 		_performanceIndex(index),
-		_route(route)
+		_route(route),
+		_depTime(depTime)
 	{
 		
 	}
@@ -28,9 +30,16 @@ public:
 		return{ 0.0, 0.0 };
 	}
 
-	const std::vector<RoutePoint> *GetPoints() const { return _route;  }
+	const std::vector<RoutePoint> &GetPoints() const { return *_route;  }
 
-	// add friend class "FlightCalculator" or provide getters?
+	friend std::ostream &operator <<(std::ostream &stream, const Flight &data)
+	{
+		stream << "Plane:\t\t" << data._plane->GetName() << std::endl;
+		stream << "Departure time:\t" << data._depTime << std::endl;
+		stream << "Departure airport:\t" << data._route->front()._waypointName << std::endl;
+		stream << "Destination airport:\t" << data._route->back()._waypointName << std::endl;
+		return stream;
+	}
 };
 
 #endif // FLIGHT_H

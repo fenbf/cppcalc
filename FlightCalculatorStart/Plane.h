@@ -43,6 +43,7 @@ public:
 
 	}
 
+	const std::string &GetName() const{ return _name; }
 	PerformanceParams GetPerfParamsMinimum() const { return _minimum; }
 	PerformanceParams GetPerfParamsAverage() const { return _average; }
 	PerformanceParams GetPerfParamsMaximum() const { return _maximum; }

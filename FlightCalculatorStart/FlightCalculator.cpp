@@ -14,7 +14,17 @@
 
 CalculatedFlightData FlightCalculator::Calculate(const Flight &flight, IDataAccessor *dataAccessor)
 {
-	return CalculatedFlightData(0, 0, 0);
+	double totalDistance = 0;
+
+	for (std::vector<RoutePoint>::const_iterator it = flight.GetPoints().begin(); it != flight.GetPoints().end(); ++it)
+	{
+		auto waypoint = dataAccessor->GetWaypoint(it->_waypointName);
+		if (waypoint == nullptr)
+			break;
+
+	}
+
+	return{ totalDistance, 0.0, 0.0 };
 }
 
 std::ostream& operator <<(std::ostream &stream, const CalculatedFlightData &data)

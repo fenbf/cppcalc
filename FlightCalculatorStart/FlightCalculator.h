@@ -10,8 +10,8 @@ private:
 	double _totalDistance;
 	double _totalTime;
 	double _totalFuel;
-
 public:
+	CalculatedFlightData() { }
 	CalculatedFlightData(double totalDist, double totalTime, double totalFuel) :
 		_totalDistance(totalDist),
 		_totalTime(totalTime),

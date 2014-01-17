@@ -42,8 +42,37 @@ int main()
 	TestingRouteGenerator routeGenerator;
 	auto route = routeGenerator.GetRoute("EPGD", "LEMD");
 	Flight flight{ dataAccessor.GetPlane("Airbus 320"), Plane::PerformanceIndex::Average, &route};
+	std::unique_ptr<FlightCalculatorBase>calc(new FlightCalculator());
 
+	std::thread t[20];
+	for (int i = 0; i < 20; ++i)
+	{
+		t[i] = std::thread([i](){
+			std::cout << i << " hello world\n";
+		});
+	}
 
+	for (int i = 0; i < 20; ++i)
+		t[i].join();
+
+	//std::thread t([&calc, &flight, &dataAccessor](){
+	//	std::cout << "running..." << std::endl;
+	//	auto calcD = calc->Calculate(flight, &dataAccessor);
+	//	std::cout << calcD;
+	//});
+
+	FlightCalculator calculator;
+	std::shared_future<CalculatedFlightData> result = std::async(std::launch::async, [&](){
+		std::cout << "running2..." << std::endl;
+		return calculator.Calculate(flight, &dataAccessor);
+	});
+
+	std::cout << result.get();
+	std::cout << "...";
+	std::cout << result.get();
+	//std::sha
+
+	/*
 	std::unique_ptr<FlightCalculatorBase> flCalc(new FlightCalculator);
 	//auto calcData1 = flCalc->Calculate(flight, &dataAccessor);
 	//std::cout << calcData1;
@@ -61,7 +90,7 @@ int main()
 	//std::cout << calcData3;
 
 	CalculatorCollection collection{ { &flight, flCalc.get() }, { &flight, flCalc2.get() }, { &flight, flCalc2.get() } };
-	collection.RunAllThreads(&dataAccessor);
+	collection.RunAllThreads(&dataAccessor);*/
 
 	std::getchar();
 
