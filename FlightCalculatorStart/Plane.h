@@ -32,7 +32,7 @@ private:
 
 public:
 	Plane(std::string name) : _name(name) { }
-	Plane(std::string name, PerformanceParams min, PerformanceParams max, PerformanceParams avg, PerformanceParams onClb, PerformanceParams onDsc) :
+	Plane(std::string name, PerformanceParams min, PerformanceParams avg, PerformanceParams max, PerformanceParams onClb, PerformanceParams onDsc) :
 		_name(name),
 		_minimum(min),
 		_average(avg),

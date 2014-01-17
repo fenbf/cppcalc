@@ -41,7 +41,7 @@ int main()
 	TestingDataAccessor dataAccessor;
 	TestingRouteGenerator routeGenerator;
 	auto route = routeGenerator.GetRoute("EPGD", "LEMD");
-	Flight flight{ dataAccessor.GetPlane("Airbus 320"), Plane::PerformanceIndex::Average, &route};
+	Flight flight{ dataAccessor.GetPlane("Airbus 330"), Plane::PerformanceIndex::Average, &route};
 	std::unique_ptr<FlightCalculatorBase>calc(new FlightCalculator());
 
 	std::thread t[20];

@@ -21,8 +21,15 @@ CalculatedFlightData FlightCalculator::Calculate(const Flight &flight, IDataAcce
 		auto waypoint = dataAccessor->GetWaypoint(it->_waypointName);
 		if (waypoint == nullptr)
 			break;
-
+		totalDistance += waypoint->_distance;
 	}
+
+	auto perfParams = flight.GetPerformanceParams(RoutePoint::Type::Cruise);
+	double speed = perfParams._velocityKmPerHour;
+	double totalTime = totalDistance / speed;
+	double totalFuel = totalTime * perfParams._fuelKgPerHour;
+
+	//return{ totalDistance, totalTime, totalFuel };
 
 	return{ totalDistance, 0.0, 0.0 };
 }

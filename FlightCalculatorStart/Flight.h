@@ -27,7 +27,8 @@ public:
 	Plane::PerformanceParams GetPerformanceParams(RoutePoint::Type pointType) const
 	{
 		// todo: implement
-		return{ 0.0, 0.0 };
+		//return{ 0.0, 0.0 };
+		return _plane->GetPerfParamsAverage();
 	}
 
 	const std::vector<RoutePoint> &GetPoints() const { return *_route;  }
